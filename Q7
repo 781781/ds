@@ -1,0 +1,7 @@
+import pandas as pd
+Method_A = [75, 82, 78, 85, 80, 88, 76, 81, 83, 79]
+Method_B = [78, 85, 80, 87, 82, 90, 79, 84, 86, 81]
+Method_C = [80, 88, 83, 90, 85, 92, 82, 86, 89, 84]
+data = { 'Student_ID': list(range(1, 11)) * 3, 'Method': ['A'] * 10 + ['B'] * 10 + ['C'] * 10, 'Score': Method_A + Method_B + Method_C }
+df = pd.DataFrame(data)
+print(df.head(12))
