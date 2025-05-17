@@ -1,0 +1,24 @@
+import pandas as pd      
+import matplotlib.pyplot as plt
+from statsmodels.tsa.seasonal import seasonal_decompose
+sales = [12000, 15000, 17000, 16000, 19000, 21000, 22000, 25000, 23000, 24000, 26000, 28000]
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+df = pd.DataFrame({'Month': months, 'Sales': sales})
+df['Date'] = pd.to_datetime(df['Month'] + ' 2024')
+df.set_index('Date', inplace=True)
+result = seasonal_decompose(df['Sales'], model='additive', period=12)
+plt.figure(figsize=(12,8))      
+plt.subplot(411)
+plt.plot(df['Sales'], label='Original')
+plt.legend(loc='upper left')     
+plt.subplot(412)
+plt.plot(result.trend, label='Trend')    
+plt.legend(loc='upper left')       
+plt.subplot(413)
+plt.plot(result.seasonal, label='Seasonality')
+plt.legend(loc='upper left')    
+plt.subplot(414) 
+plt.plot(result.resid, label='Residuals')
+plt.legend(loc='upper left')    
+plt.tight_layout()     
+plt.show()
