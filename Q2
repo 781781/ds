@@ -1,0 +1,18 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+students = ['Alice', 'Bob', 'Charlie', 'David', 'Eva', 'Frank', 'Grace', 'Helen']
+courses = ['Math', 'Math', 'Science', 'Science', 'Math', 'Science', 'Math', 'Science']
+grades = [85, 92, 78, 88, 95, 77, 80, 85]
+df = pd.DataFrame({ 'Student': students, 'Course': courses, 'Grade': grades })
+print("Full Dataset:")
+print(df)
+grouped = df.groupby('Course').agg( Average_Grade=('Grade', 'mean'), Highest_Grade=('Grade', 'max'), Lowest_Grade=('Grade', 'min'), Student_Count=('Student', 'count')).reset_index()
+print("\nCourse-wise Summary:")
+print(grouped)
+plt.figure(figsize=(8, 5))
+sns.barplot(x='Course', y='Average_Grade', data=grouped)
+plt.title("Average Grade per Course")
+plt.ylabel("Average Grade")
+plt.grid(True)
+plt.show()
