@@ -1,0 +1,14 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from scipy.stats import pearsonr
+Variable_X = [10, 12, 9, 14, 15, 13, 16, 18, 17, 20]
+Variable_Y = [65, 70, 60, 75, 78, 73, 80, 85, 83, 90]
+df = pd.DataFrame({'Advertising_Spend': Variable_X, 'Product_Sales': Variable_Y})
+plt.figure(figsize=(8,6))
+sns.regplot(x='Advertising_Spend', y='Product_Sales', data=df)
+plt.title('Advertising Spend vs Product Sales')
+plt.xlabel('Advertising Spend (in $000s)')
+plt.ylabel('Product Sales (in units)')      plt.show()
+corr_coef, p_value = pearsonr(Variable_X, Variable_Y)
+print(f"Pearson Correlation Coefficient: {corr_coef:.2f} (p-value = {p_value:.4f})")
