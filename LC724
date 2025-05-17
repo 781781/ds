@@ -1,0 +1,7 @@
+import pandas as pd
+nums = [1, 7, 3, 6, 5, 6]
+s = pd.Series(nums)
+left_sum = s.cumsum().shift(1, fill_value=0)
+right_sum = s[::-1].cumsum().shift(1, fill_value=0)[::-1]
+pivot = (left_sum == right_sum).idxmax() if (left_sum == right_sum).any() else -1
+print("Pivot Index:", pivot)
