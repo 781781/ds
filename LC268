@@ -1,0 +1,6 @@
+def missingNumber(nums):
+    n = len(nums)
+    expected_sum = n * (n + 1) // 2
+    return expected_sum - sum(nums)
+nums = list(map(int, input("Enter the numbers separated by space: ").split()))
+print("Missing Number:", missingNumber(nums))
