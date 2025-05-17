@@ -1,0 +1,35 @@
+import matplotlib.pyplot as plt    
+from collections import defaultdict   
+from math import gcd
+def maxPoints(points):
+    if len(points) <= 2:
+        return len(points)
+    max_points = 0
+    for i in range(len(points)):
+        slopes = defaultdict(int)
+        same_points = 1
+        for j in range(i+1, len(points)):
+            x1, y1 = points[i]
+            x2, y2 = points[j]
+            dx = x2 - x1
+            dy = y2 - y1
+            if dx == 0 and dy == 0:
+                same_points += 1
+                continue
+            g = gcd(dy, dx)
+            slope = (dy // g, dx // g) if g != 0 else (dy, dx)
+            slopes[slope] += 1
+        current_max = max(slopes.values(), default=0) + same_points
+        max_points = max(max_points, current_max)
+    return max_points
+points = [[1,1], [2,2], [3,3]]
+print("Max Points on a Line:", maxPoints(points)) 
+x_vals = [p[0] for p in points]
+y_vals = [p[1] for p in points]
+plt.scatter(x_vals, y_vals, color='blue')
+plt.plot(x_vals, y_vals, color='red', linestyle='--')
+plt.title('Max Points on a Line')    
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')      
+plt.grid(True)     
+plt.show()
