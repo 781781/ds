@@ -1,6 +1,12 @@
-def maxProduct(nums):
-    nums.sort()
-    return (nums[-1] - 1) * (nums[-2] - 1)
-nums = [3, 4, 5, 2]
-result = maxProduct(nums)
-print("Maximum product of two elements minus one each:", result)
+def matrixReshape(mat, r, c):
+    flat = sum(mat, []) 
+    if len(flat) != r * c:
+        return mat
+    return [flat[i*c:(i+1)*c] for i in range(r)]
+mat = [[1, 2], [3, 4]]
+r = 1
+c = 4
+reshaped = matrixReshape(mat, r, c)
+print("Reshaped Matrix:")
+for row in reshaped:
+    print(row)
