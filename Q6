@@ -1,0 +1,14 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+square_footage = [800, 1200, 1500, 1800, 2000, 2200, 2500, 2800, 3000, 3500]
+price = [150000, 180000, 210000, 240000, 260000, 290000, 320000, 350000, 380000, 420000]
+df = pd.DataFrame({ 'Square_Footage': square_footage, 'Price': price })
+print(df.head())
+plt.figure(figsize=(8, 6))
+sns.regplot(x='Square_Footage', y='Price', data=df, ci=None, line_kws={"color": "red"})
+plt.title('House Price vs. Square Footage')
+plt.xlabel('Square Footage (sq ft)')
+plt.ylabel('Price ($)')
+plt.grid(True)
+plt.show()
