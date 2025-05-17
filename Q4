@@ -1,0 +1,19 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt          
+from collections import Counter
+delivery_times = [3, 4, 2, 6, 5, 3, 4, 7, 8, 3, 5, 2, 6, 7, 6, 5, 4, 2, 5, 6, 7, 4, 3, 8, 5]
+df = pd.DataFrame({'Delivery_Days': delivery_times})
+summary = df['Delivery_Days'].describe()
+print("Summary Statistics:\n", summary)
+counts = Counter(delivery_times)
+print("\nFrequency of Each Delivery Duration (Days):")
+for k in sorted(counts):
+    print(f"{k} days: {counts[k]} packages")
+plt.figure(figsize=(8, 5))
+sns.histplot(df['Delivery_Days'], bins=range(2, 10), kde=True)
+plt.title('Distribution of Package Delivery Durations')
+plt.xlabel('Delivery Duration (Days)')        
+plt.ylabel('Number of Packages')
+plt.grid(True)
+plt.show()
