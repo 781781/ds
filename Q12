@@ -1,0 +1,10 @@
+import pandas as pd
+import numpy as np
+delivery_times = [ 3, 4, 2, 6, 5, 3, 4, 7, 8, 3, 5, 2, 6, 7, 6]
+data = np.array(delivery_times).reshape(3, 5)
+df = pd.DataFrame(data, index=['Region_A', 'Region_B', 'Region_C'], columns=['Week_1', 'Week_2', 'Week_3', 'Week_4', 'Week_5'])
+print(df)
+print("\nWeekly Mean Delivery Times:")
+print(df.mean())
+print("\nRegional Mean Delivery Times:")
+print(df.mean(axis=1))
