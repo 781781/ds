@@ -1,0 +1,12 @@
+import matplotlib.pyplot as plt
+before = [70, 75, 68, 72, 74]
+after = [78, 80, 74, 79, 81]
+students = list(range(1, len(before) + 1))
+plt.figure(figsize=(8, 5))
+for i in range(len(before)):
+    plt.plot(['Before', 'After'], [before[i], after[i]], marker='o', color='blue', alpha=0.7)
+plt.title('Individual Student Score Improvement')
+plt.ylabel('Score')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
