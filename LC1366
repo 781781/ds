@@ -1,0 +1,10 @@
+from collections import defaultdict
+votes = ["ABC", "ACB", "ABC", "ACB", "ACB"]
+rank_counts = defaultdict(lambda: [0] * len(votes[0]))
+for vote in votes:
+    for i, team in enumerate(vote):
+        rank_counts[team][i] += 1
+sorted_teams = sorted(rank_counts.items(), key=lambda x: (x[1], -ord(x[0])), reverse=True)
+result = ''.join([team for team, _ in sorted_teams])
+print("Ranked Teams:", result)
+
