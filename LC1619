@@ -1,0 +1,9 @@
+def trimmed_mean(arr):
+    n = len(arr)
+    remove_count = n // 20  
+    arr_sorted = sorted(arr)
+    trimmed_arr = arr_sorted[remove_count: n - remove_count]
+    return sum(trimmed_arr) / len(trimmed_arr)
+arr = [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3]
+result = trimmed_mean(arr)
+print(f"Trimmed Mean: {result:.5f}")  
