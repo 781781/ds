@@ -1,0 +1,17 @@
+import pandas as pd        
+import numpy as np
+from scipy import stats      
+import matplotlib.pyplot as plt
+import seaborn as sns
+sales_before = [150, 160, 170, 180, 175, 165, 155, 180, 190, 185]
+sales_after = [200, 220, 210, 240, 230, 250, 240, 220, 210, 215]
+df = pd.DataFrame({ 'Sales_Before': sales_before, 'Sales_After': sales_after })
+df_long = df.melt(var_name='Period', value_name='Sales')
+print(df_long.head())
+t_stat, p_value = stats.ttest_rel(df['Sales_After'], df['Sales_Before'])
+print(f"Paired t-test: t = {t_stat:.3f}, p = {p_value:.3f}")
+plt.figure(figsize=(8,6))
+sns.boxplot(x='Period', y='Sales', data=df_long)
+plt.title('Sales Before and After Campaign')
+plt.ylabel('Sales (in $000s)')    
+plt.show()
