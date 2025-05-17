@@ -1,0 +1,7 @@
+def maxProduct(nums):
+    nums.sort()
+    return (nums[-1] - 1) * (nums[-2] - 1)
+nums = [3, 4, 5, 2]
+result = maxProduct(nums)
+print("Maximum product of two elements minus one each:", result)
+
