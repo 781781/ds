@@ -1,0 +1,15 @@
+import scipy.stats as stats
+import numpy as np
+sample_mean = 5.8
+population_mean = 5.0
+population_std = 0.8
+sample_size = 30
+z_score = (sample_mean - population_mean) / (population_std / np.sqrt(sample_size))
+p_value = 1 - stats.norm.cdf(z_score)
+print(f"Z-score: {z_score:.2f}")
+print(f"P-value: {p_value:.4f}")
+alpha = 0.05
+if p_value < alpha:
+    print("Conclusion: Statistically significant improvement in weight loss. Reject H₀.")
+else:
+    print("Conclusion: No statistically significant improvement. Fail to reject H₀.")
