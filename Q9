@@ -1,0 +1,15 @@
+from scipy import stats    
+import numpy as np
+industry_mean = 8        
+industry_std = 1.5
+sample_mean = 7.5       
+sample_size = 25
+sample_std = industry_std  
+t_stat = (sample_mean - industry_mean) / (sample_std / np.sqrt(sample_size))
+p_value = stats.t.cdf(t_stat, df=sample_size-1)
+print(f"T-statistic: {t_stat:.3f}")
+print(f"P-value: {p_value:.4f}")
+if p_value < 0.05:
+    print("Reject H0: Significant improvement in recovery time.")
+else:
+print("Fail to reject H0: No significant improvement.")
