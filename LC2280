@@ -1,0 +1,33 @@
+import matplotlib.pyplot as plt
+def minimumLines(stockPrices):
+    if len(stockPrices) <= 1:
+        return 0
+    stockPrices.sort()
+    lines = 1   segments = []    start_idx = 0
+    for i in range(2, len(stockPrices)):
+        x0, y0 = stockPrices[i-2]
+        x1, y1 = stockPrices[i-1]
+        x2, y2 = stockPrices[i]
+        if (y2 - y1) * (x1 - x0) != (y1 - y0) * (x2 - x1):
+            lines += 1
+            segments.append((stockPrices[start_idx], stockPrices[i-1]))
+            start_idx = i-1
+    segments.append((stockPrices[start_idx], stockPrices[-1]))
+    return lines, segments
+stockPrices = [[1,7], [2,6], [3,5], [4,4], [5,4], [6,3], [7,2], [8,1]]
+num_lines, line_segments = minimumLines(stockPrices)
+print("Minimum Lines to Represent Chart:", num_lines)
+plt.figure(figsize=(10, 6))
+x_vals, y_vals = zip(*stockPrices)
+plt.scatter(x_vals, y_vals, color='blue', label='Stock Prices')
+for (start, end) in line_segments:
+    xs = [start[0], end[0]]
+    ys = [start[1], end[1]]
+    plt.plot(xs, ys, color='red', linewidth=2)
+plt.title("Stock Prices with Minimum Line Segments")
+plt.xlabel("Time")
+plt.ylabel("Price")
+plt.grid(True)
+plt.legend()
+plt.show()
+
