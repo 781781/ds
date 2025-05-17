@@ -1,0 +1,25 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+revenues = [1200, 1500, 1300, 1100, 1700, 1600, 1800]
+days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+df = pd.DataFrame({ 'Day': days, 'Revenue': revenues })
+mean_rev = np.mean(revenues)
+trend = np.polyfit(range(len(revenues)), revenues, 1)
+slope = trend[0]
+print(f"Mean Revenue: {mean_rev}")
+print(f"Trend Slope: {slope:.2f}")
+if slope > 0:
+    print("Performance is improving.")
+elif slope < 0:
+    print("Performance is declining.")
+else:
+    print("Performance is consistent.")
+plt.figure(figsize=(8, 4))
+sns.lineplot(x='Day', y='Revenue', data=df, marker='o')
+plt.axhline(mean_rev, color='red', linestyle='--', label='Mean Revenue')
+plt.title('Walmart Weekly Revenue Trend')
+plt.legend()
+plt.grid(True)
+plt.show()
